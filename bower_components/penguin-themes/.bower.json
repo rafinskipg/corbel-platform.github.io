@@ -1,0 +1,59 @@
+{
+  "name": "penguin-themes",
+  "description": "A collection themes for Penguin framework (https://github.com/bq/penguin)",
+  "ignore": [
+    "bower_components",
+    "node_modules",
+    ".tmp",
+    "*.log",
+    ".idea",
+    ".gitignore",
+    ".sass-cache",
+    ".travis.yml",
+    ".editorconfig"
+  ],
+  "dependencies": {
+    "penguin": "0.0.6"
+  },
+  "homepage": "https://penguin.docs.bqws.io",
+  "authors": [
+    "front-end bq <front-end@bq.com>",
+    "Álvaro Brito <alvaro.brito@bq.com> <alvarobr85@gmail.com>",
+    "Óscar Ferrándiz <oscar.ferrandiz@bq.com> <oferrandiz@gmail.com>"
+  ],
+  "contributors": [
+    {
+      "name": "José Manuel Guzmán",
+      "email": "josemanuel.guzman@bq.com"
+    },
+    {
+      "name": "Javier López",
+      "email": "javier.lopez@bq.com"
+    },
+    {
+      "name": "Eduardo Sainz",
+      "email": "eduardo.sainz@bq.com"
+    }
+  ],
+  "keywords": [
+    "penguin",
+    "themes",
+    "jquery",
+    "javascript",
+    "ui",
+    "css",
+    "html5",
+    "sass",
+    "library",
+    "framework"
+  ],
+  "_release": "67ab80abd5",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "67ab80abd558e7c317e761e28084860a31720293"
+  },
+  "_source": "git://github.com/bq/penguin-themes.git",
+  "_target": "master",
+  "_originalSource": "penguin-themes"
+}

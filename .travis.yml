@@ -1,0 +1,23 @@
+language: ruby
+rvm:
+- 2.2.0
+notifications:
+  email:
+    recipients: corbel-dev@bq.com
+    on_success: change
+    on_failure: never
+before_install:
+- npm install -g bower
+- gem install bundler
+install:
+- bower install
+- bundle install
+script:
+- bundle exec jekyll build
+- bash ./travis-runner.sh
+branches:
+  only:
+  - master
+env:
+  global:
+    secure: dGCjbanmu46FlYYLy2++m/+RXsae4BxtEc00fR+cOLTuVIDKEIqGMIi9dUR/NLjQij/iE6tfXNbohcsj8v5CIlDQKlFCJ46uKW0585SFbfSQkTSrKTrOOAMphznyLGeMmeF0fG4ZqdY3qlCzT2BfPbik44OAMH9aMNuWOZbPzfr0EHtYYd36LhKcvFEa+vLGNN45vOB35qAdBbN666NY/lHCIBVt4zY9TiUcajV6qqcTYhwTodnJLgIWddpI5JRzedgYHz+AeERfSqL3QAyM/HVzaIDuuKMWAHKKCFwMDTBNTuxFtGS+gTDPzLfB60gsTCXNUNgMxY5nMoHClQ4Tr9+AhbIiGqJY2ZB1yYQ0HhemCxEFzU6YfQip/dkE/rg1CoLo8o6ptCKwMWiWBTTzx4/E40IKCyZV5FeEytggdNgdViKz7ZU73hgWvZEs4crQlEgSBT9CtB7xvwc42RiJ33/6ZuS7xhdhq89bMu+lfqPTY6lRGRQeL1Nf4uA+KiDQd4AkSCFbQ4IQPvL498hHaOnBS4H5hn5GPA+9ICJMONduUiaT0F4+RgzcaeK7SBx7aAKDaBHVIBlGFRrs3t9UuuaEKUq9AFtc19nCuhV9fuOye0/pHzyVYtEq9OU5NWH/6nMyFhED8gkjSYNRfLJY2cznOq+/5d7FBwKUULNyq0o=

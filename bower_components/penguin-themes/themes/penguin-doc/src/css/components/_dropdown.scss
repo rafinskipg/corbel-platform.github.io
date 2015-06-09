@@ -1,0 +1,64 @@
+/*------------------------------------*\
+    #DROPDOWN-THEME
+\*------------------------------------*/
+
+.dropdown {
+
+    .submenu {
+        background-color: $dropdown-submenu-bg-color;
+    }
+
+}
+
+    .dropdown__menu__item {
+        background-color: $nav-submenu-bg-color;
+    }
+
+        .dropdown__link,
+        .dropdown__menu__link {
+            font-size: $dropdown-font-size;
+            @include transition($dropdown-transition);
+            font-weight: $dropdown-item-font-weight;
+            background-color: $dropdown-item-bg-color;
+            color: $dropdown-item-color;
+            padding: $dropdown-item-padding;
+
+            &:hover, &:focus {
+                background-color: $dropdown-item-hover-bg-color;
+            }
+
+            &:active {
+                background-color: $dropdown-item-active-bg-color;
+            }
+
+        }
+
+
+.dropdown--selected {
+
+    > .dropdown__link,
+    > .nav__menu__link{
+        background-color:  $dropdown-item-selected-bg-color !important;
+        color: $dropdown-item-selected-color !important;
+    }
+
+}
+
+.nav__submenu,
+.dropdown__menu {
+    display: block!important;
+    pointer-events: none;
+    @include opacity(0);
+    @include translate(0, -10px);
+    @include transition(opacity, transform, .3s);
+
+    .transition & {
+        pointer-events: auto;
+        @include translate(0, 0);
+        @include opacity(1);
+    }
+
+    .dropdown--stacked & {
+        display: none!important;
+    }
+}

@@ -1,0 +1,28 @@
+{
+    "name": "corbel-doc",
+    "version": "^0.0.1",
+    "description": "Corbel Platform documentation site http://corbel.docs.bqws.io",
+    "ignore": [
+        ".tmp",
+        "node_modules",
+        "bower_components",
+        "*.log",
+        ".idea"
+    ],
+    "dependencies": {
+        "penguin-themes": "master"
+    },
+    "keywords": [
+        "corbel",
+        "penguin",
+        "themes",
+        "jquery",
+        "javascript",
+        "css",
+        "ui",
+        "html5",
+        "sass",
+        "library",
+        "framework"
+    ]
+}
