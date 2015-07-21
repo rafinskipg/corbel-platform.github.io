@@ -13,5 +13,5 @@ then
   git init && \
   git add . && \
   git commit -m "deploy" && \
-  git push --force --quiet "https://${GH_OAUTH_TOKEN}@github.com/bq/corbel-doc" master:gh-pages > /dev/null 2>&1
+  git push --force --quiet "https://${GH_OAUTH_TOKEN}@github.com/corbel-platform/corbel-doc" master:gh-pages > /dev/null 2>&1
 fi

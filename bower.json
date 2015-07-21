@@ -1,7 +1,7 @@
 {
     "name": "corbel-doc",
     "version": "^0.0.1",
-    "description": "Corbel Platform documentation site http://corbel.docs.bqws.io",
+    "description": "Corbel Platform documentation site http://corbel.io",
     "ignore": [
         ".tmp",
         "node_modules",
