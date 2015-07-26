@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Corbel</title>
+  <meta name="description" content="Corbel platform is a generic platform that offers you all you need to build any application such as authentication, resources or events.">
+
+  <!-- Links -->
+  <link rel="canonical" href="http://corbel.io/docs/iam.html">
+  <link rel="alternate" type="application/rss+xml" title="Corbel" href="http://corbel.io/feed.xml" />
+
+  <!-- Icons -->
+  <link rel="icon" type="image/x-icon" href="/assets/img/favicon.ico" />
+
+  <link rel="apple-touch-icon-precomposed apple-touch-icon" href="/assets/img/apple-icon-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="76x76" href="/assets/img/apple-icon-76x76.png">
+  <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/assets/img/apple-icon-120x120.png">
+
+  <link rel="apple-touch-icon" sizes="152x152" href="touch-icon-ipad-retina.png">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="application-name" content="Penguin">
+  <meta name="msapplication-TileColor" content="##FFD873">
+  <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+
+  <!-- Styles -->
+  <link rel="stylesheet" title="penguin-theme" href="/bower_components/penguin-themes/themes/penguin-doc/dist/css/penguin-doc.css">
+  <link rel="stylesheet" href="/assets/css/main.css">
+</head>
+
+
+  <body>
+
+    <header class="header">
+
+    <div class="wrapper">
+
+        <h1 class="title col-a-12 col-c-5">
+            <a href="/"><span class="title__logo"><img src="/assets/svg/corbel.svg" alt=""/></span>
+                Corbel
+            </a>
+        </h1>
+
+        <nav class="header__nav col-a-12 col-c-7">
+            <h1 class="header__nav__title">Menu </h1>
+            <ul class="nav__menu">
+                
+
+                
+
+                
+
+                
+
+                
+
+                
+
+                
+
+                
+
+                
+
+                
+
+                
+
+                
+
+                
+                <li class="nav__menu__item"><a
+                        class="header__nav__link "
+                        href="/getting-started/">Getting started</a></li>
+                
+
+                
+
+                
+                <li class="nav__menu__item"><a
+                        class="header__nav__link "
+                        href="/docs/">Documentation</a></li>
+                
+
+                
+
+                <li class="nav__menu__item">
+                    <a class="header__nav__link" href="https://github.com/bq/corbel" target="_blank">
+                <span class="header__nav__icon">
+                    <svg viewBox="0 0 16 16">
+                        <path fill="#828282"
+                              d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/>
+                    </svg>
+                </span>
+                        GitHub
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+    </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title"></h1>
+  </header>
+
+  <article class="post-content">
+    <h1 id="conceptos-bsicos-autenticacin-y-autorizacin">Conceptos básicos: Autenticación y autorización</h1>
+
+<p>El objetivo de este documento es la de reflejar los conceptos básicos que implementa corbel.</p>
+
+<h2 id="dominios-clientes-y-usuarios">Dominios, clientes y usuarios</h2>
+
+<p>corbel cuenta con una estructura organizativa para gestionar los diferentes dominios, aplicaciones y usuarios. Definimos dentro de la terminología corbel:</p>
+
+<ul>
+  <li><strong>Domain</strong>: un dominio/producto gestionado dentro de corbel</li>
+  <li><strong>Client</strong>: una de las aplicaciones perteneciente a un Domain</li>
+  <li><strong>User</strong>: uno de los usuarios perteneciente a un Domain</li>
+</ul>
+
+<h3 id="ejemplos">Ejemplos</h3>
+
+<p>La lista de dominios, clientes y usuarios quedarán almacenadas en la base de datos de IAM. A continuación se muestra un ejemplo de <code>Domain</code>, <code>Client</code> y <code>User</code> que usaremos para siguientes ejemplos:</p>
+
+<ul>
+  <li><strong>iam.domain</strong></li>
+</ul>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="p">{</span>
+    <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;orpheus&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;createdBy&quot;</span> <span class="o">:</span> <span class="s2">&quot;IamSell on integration-silkroad-app.dev&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;createdDate&quot;</span> <span class="o">:</span> <span class="nx">ISODate</span><span class="p">(</span><span class="s2">&quot;2014-02-26T15:02:13.383Z&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;description&quot;</span> <span class="o">:</span> <span class="s2">&quot;Domain for Orpheus&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;scopes&quot;</span> <span class="o">:</span> <span class="p">[</span>
+        <span class="p">...</span>
+    <span class="p">]</span>
+<span class="p">}</span></code></pre></div>
+
+<ul>
+  <li><strong>iam.client</strong></li>
+</ul>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="p">{</span>
+    <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;d2d9eda7&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;createdBy&quot;</span> <span class="o">:</span> <span class="s2">&quot;IamSell on integration-silkroad-app.dev&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;createdDate&quot;</span> <span class="o">:</span> <span class="nx">ISODate</span><span class="p">(</span><span class="s2">&quot;2014-02-26T15:02:14.615Z&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;domain&quot;</span> <span class="o">:</span> <span class="s2">&quot;orpheus&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;key&quot;</span> <span class="o">:</span> <span class="s2">&quot;26dbeb5dcf12e4d3909f8db3435d27d300b256e515b147bbba960dec1d627a2a&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;name&quot;</span> <span class="o">:</span> <span class="s2">&quot;orpheus-web&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;scopes&quot;</span> <span class="o">:</span> <span class="p">[</span>
+       <span class="p">...</span>
+    <span class="p">],</span>
+    <span class="s2">&quot;signatureAlgorithm&quot;</span> <span class="o">:</span> <span class="s2">&quot;HS256&quot;</span>
+<span class="p">}</span></code></pre></div>
+
+<ul>
+  <li><strong>iam.user</strong></li>
+</ul>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="p">{</span>
+    <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;74427e62a44dc48ae8da70d2f3da996d&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;createdBy&quot;</span> <span class="o">:</span> <span class="s2">&quot;IamSell on integration-silkroad-app.dev&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;createdDate&quot;</span> <span class="o">:</span> <span class="nx">ISODate</span><span class="p">(</span><span class="s2">&quot;2014-02-26T15:02:10.020Z&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;domain&quot;</span> <span class="o">:</span> <span class="s2">&quot;orpheus&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;email&quot;</span> <span class="o">:</span> <span class="s2">&quot;silkroad.qa@gmail.com&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;firstName&quot;</span> <span class="o">:</span> <span class="s2">&quot;silkroad-qa&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;scopes&quot;</span> <span class="o">:</span> <span class="p">[</span>
+        <span class="p">...</span>
+    <span class="p">],</span>
+    <span class="s2">&quot;username&quot;</span> <span class="o">:</span> <span class="s2">&quot;SilkroadUser&quot;</span>
+<span class="p">}</span></code></pre></div>
+
+<hr />
+
+<h2 id="scopes">Scopes</h2>
+
+<p>Llamamos <strong>Scopes</strong> al mecanismo genérico que permite realizar el control de acceso a los diferentes recursos de cada módulo de corbel. Puesto que corbel es una plataforma de contenidos digitales genérica, el mecanismo de gestión de acceso está pensado para adaptarse a cualquier situación.</p>
+
+<p>Scopes se implementa mediante una serie de reglas, donde todos los accesos estarán prohibido salvo que cumplan con al menos un Scope. Cada Scope contará con un nombre único dentro del sistema. Todas la peticiones que se realizan a los módulos corbel han de contener un <strong>accessToken</strong> generado por IAM a partir de las credenciales de clientes y usuarios. A la hora de generar el accessToken, se pedirá a IAM la lista de Scopes que se requieran, lista que se comprobará si es legal de acuerdo a la configuración interna que más tarde se detallará.</p>
+
+<p>Los Scopes permiten controlar el acceso de las siguientes formas:</p>
+
+<ul>
+  <li>Control a nivel de módulo de corbel</li>
+  <li>Control a nivel de tipo de dato (Content-Type) de la petición</li>
+  <li>Control a nivel de método HTTP</li>
+  <li>Control a nivel de URIs
+    <ul>
+      <li>Soporte de expresiones regulares</li>
+      <li>Soporte de plantillas
+        <ul>
+          <li>Reemplazo por identificación de usuario</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p>Antes de continuar, veamos como se define en corbel los conceptos de dominio (o producto), aplicaciones y usuarios.</p>
+
+<h3 id="cmo-se-definen">¿Cómo se definen?</h3>
+
+<p>Por definición de Scopes entendemos dos procesos:</p>
+
+<ul>
+  <li>Definición de dónde aplica cada Scope, es decir, la lista de Scopes soportados por cada <code>Domain</code>, <code>Client</code> y <code>User</code></li>
+  <li>Definición de cómo se define cada Scope: reglas de acceso</li>
+</ul>
+
+<p>La definición de cada Scope también quedará almacenada en la base de datos de IAM. Para describir cómo se define un Scope concreto, partamos de un ejemplo:</p>
+
+<p><strong>iam.scope</strong></p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="p">{</span>
+    <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;resources:music:streaming&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;audience&quot;</span> <span class="o">:</span> <span class="s2">&quot;http://resources.bqws.io&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;rules&quot;</span> <span class="o">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;mediaTypes&quot;</span> <span class="o">:</span> <span class="p">[</span>
+                <span class="s2">&quot;audio/mp3&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;audio/aacp&quot;</span>
+            <span class="p">],</span>
+            <span class="s2">&quot;methods&quot;</span> <span class="o">:</span> <span class="p">[</span>
+                <span class="s2">&quot;GET&quot;</span>
+            <span class="p">],</span>
+            <span class="s2">&quot;type&quot;</span> <span class="o">:</span> <span class="s2">&quot;http_access&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;uri&quot;</span> <span class="o">:</span> <span class="s2">&quot;v.*/resource/music:Track/.*&quot;</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">},</span>
+<span class="p">{</span>
+    <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;resources:music:edit_playlist&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;audience&quot;</span> <span class="o">:</span> <span class="s2">&quot;http://resources.bqws.io&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;rules&quot;</span> <span class="o">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;mediaTypes&quot;</span> <span class="o">:</span> <span class="p">[</span>
+                <span class="s2">&quot;application/json&quot;</span>
+            <span class="p">],</span>
+            <span class="s2">&quot;methods&quot;</span> <span class="o">:</span> <span class="p">[</span>
+                <span class="s2">&quot;PUT&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;POST&quot;</span>
+            <span class="p">],</span>
+            <span class="s2">&quot;type&quot;</span> <span class="o">:</span> <span class="s2">&quot;http_access&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;uri&quot;</span> <span class="o">:</span> <span class="s2">&quot;v.*/resource/music:Playlist/-.*&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;mediaTypes&quot;</span> <span class="o">:</span> <span class="p">[</span>
+                <span class="s2">&quot;application/json&quot;</span>
+            <span class="p">],</span>
+            <span class="s2">&quot;methods&quot;</span> <span class="o">:</span> <span class="p">[</span>
+                <span class="s2">&quot;POST&quot;</span>
+            <span class="p">],</span>
+            <span class="s2">&quot;type&quot;</span> <span class="o">:</span> <span class="s2">&quot;http_access&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;uri&quot;</span> <span class="o">:</span> <span class="s2">&quot;v.*/resource/music:Playlist/?&quot;</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span></code></pre></div>
+
+<p>En este ejemplo podemos ver que se han definido dos Scopes : <code>resources:music:streaming</code> y <code>resources:music:edit_playlist</code>.</p>
+
+<p>Para ellos se ha registrado:</p>
+
+<ul>
+  <li><code>audience</code>: Indica en qué módulo de corbel aplica este Scope. Los valores pueden ser:
+    <ul>
+      <li><code>http://iam.bqws.io</code> para el módulo de autenticación <strong>IAM</strong></li>
+      <li><code>http://resources.bqws.io</code> para el módulo recursos <strong>Resources</strong></li>
+      <li><code>http://evci.bqws.io</code> para el módulo de notificaciones <strong>EVCI</strong></li>
+      <li><code>http://ec.bqws.io</code> para el módulo de comercio electrónico <strong>EC</strong></li>
+    </ul>
+  </li>
+  <li><code>rules</code>: Lista de reglas que se aplican para ver si la petición se ajusta al Scope (sirve con una de la lista para que sea válido):
+    <ul>
+      <li>Cada regla es un diccionario con los siguientes campos:
+        <ul>
+          <li><code>mediaTypes</code>: formato de datos que ha de llevar la petición</li>
+          <li><code>methods</code>: Lista de operaciones HTTP permitidas en el Scope</li>
+          <li><code>type</code>: tipo de acceso</li>
+          <li><code>uri</code>: ruta de acceso. Las rutas soportan:
+            <ul>
+              <li>Expresiones regulares, como por ejemplo <code>v.*/resource/music:Playlist/?</code></li>
+              <li>Plantillas, como por ejemplo  <code>v.*/resource/music:Playlist/-.*</code></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p>De esta forma si un Domain, Client y User contienen el Scope <code>resources:music:edit_playlist</code>, y se obtiene un <code>accessToken</code> de IAM con el correspondiente Scope la siguiente petición sería válida:</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">curl</span> <span class="s1">&#39;http://resources-int.bqws.io/v1.0/resource/music:Playlist/&#39;</span>
+    <span class="o">-</span><span class="nx">H</span> <span class="s1">&#39;Authorization: Bearer token&#39;</span>
+    <span class="o">-</span><span class="nx">H</span> <span class="s1">&#39;Content-Type: application/json&#39;</span>
+    <span class="o">-</span><span class="nx">H</span> <span class="s1">&#39;Accept: application/json&#39;</span>
+    <span class="o">--</span><span class="nx">data</span> <span class="s2">&quot;{playlist:my_playlist}&quot;</span></code></pre></div>
+
+<hr />
+
+<h3 id="dnde-aplican">¿Dónde aplican?</h3>
+
+<p>Los Scopes se pueden aplicar tanto a <code>Domain</code>, como <code>Client</code> o <code>User</code>, para conseguir así la configuración de acceso deseada. El uso de los Scopes en los diferentes niveles implica:</p>
+
+<ul>
+  <li><strong>Domain</strong>: Cada Domain podrá definir todos los Scopes que se van a utilizar para un producto concreto.</li>
+  <li><strong>Client</strong>: Cada Client podrá definir sus propios Scopes, siempre y cuando sean un subconjunto de los del Domain al que pertenece.</li>
+  <li><strong>User</strong>:  Cada User podrá definir sus propios Scopes como un subconjunto de los del Domain al que pertenece.</li>
+</ul>
+
+<p>Finalmente, una petición utilizará la intersección de los Scopes definidos por <code>Client</code> y <code>User</code>, que a su vez será un subconjunto de los Scopes definidos por <code>Domain</code>.</p>
+
+<p><img src="../img/scopes-intersection.png" alt="scopes intersection" /></p>
+
+<p>La lista de Scopes quedará almacenadas en la base de datos de IAM. Esta lista contendrá los nombre únicos que identifican a cada Scope. A continuación se muestra un ejemplo con las entradas necesarias en la base de datos para definir una serie de Scopes para un <code>Domain</code>, <code>Client</code> y <code>User</code>:</p>
+
+<p><strong>iam.domain</strong></p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="p">{</span>
+    <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;orpheus&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;createdBy&quot;</span> <span class="o">:</span> <span class="s2">&quot;IamSell on integration-silkroad-app.dev&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;createdDate&quot;</span> <span class="o">:</span> <span class="nx">ISODate</span><span class="p">(</span><span class="s2">&quot;2014-02-26T15:02:13.383Z&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;description&quot;</span> <span class="o">:</span> <span class="s2">&quot;Domain for Orpheus&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;scopes&quot;</span> <span class="o">:</span> <span class="p">[</span>
+        <span class="s2">&quot;resources:music:read_catalog&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;resources:music:edit_playlist&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;resources:music:streaming&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;iam:user:create&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;iam:user:delete&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;iam:user:read&quot;</span>
+    <span class="p">]</span>
+<span class="p">}</span></code></pre></div>
+
+<p><strong>iam.client</strong></p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="p">{</span>
+    <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;d2d9eda7&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;createdBy&quot;</span> <span class="o">:</span> <span class="s2">&quot;IamSell on integration-silkroad-app.dev&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;createdDate&quot;</span> <span class="o">:</span> <span class="nx">ISODate</span><span class="p">(</span><span class="s2">&quot;2014-02-26T15:02:14.615Z&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;domain&quot;</span> <span class="o">:</span> <span class="s2">&quot;orpheus&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;key&quot;</span> <span class="o">:</span> <span class="s2">&quot;26dbeb5dcf12e4d3909f8db3435d27d300b256e515b147bbba960dec1d627a2a&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;name&quot;</span> <span class="o">:</span> <span class="s2">&quot;orpheus-web&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;scopes&quot;</span> <span class="o">:</span> <span class="p">[</span>
+        <span class="s2">&quot;resources:music:read_catalog&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;resources:music:edit_playlist&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;resources:music:streaming&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;iam:user:create&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;iam:user:read&quot;</span>
+    <span class="p">],</span>
+    <span class="s2">&quot;signatureAlgorithm&quot;</span> <span class="o">:</span> <span class="s2">&quot;HS256&quot;</span>
+<span class="p">}</span></code></pre></div>
+
+<p><strong>iam.user</strong></p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="p">{</span>
+    <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;74427e62a44dc48ae8da70d2f3da996d&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;createdBy&quot;</span> <span class="o">:</span> <span class="s2">&quot;IamSell on integration-silkroad-app.dev&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;createdDate&quot;</span> <span class="o">:</span> <span class="nx">ISODate</span><span class="p">(</span><span class="s2">&quot;2014-02-26T15:02:10.020Z&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;domain&quot;</span> <span class="o">:</span> <span class="s2">&quot;orpheus&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;email&quot;</span> <span class="o">:</span> <span class="s2">&quot;silkroad.qa@gmail.com&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;firstName&quot;</span> <span class="o">:</span> <span class="s2">&quot;silkroad-qa&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;scopes&quot;</span> <span class="o">:</span> <span class="p">[</span>
+        <span class="s2">&quot;resources:music:read_catalog&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;resources:music:edit_playlist&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;iam:user:create&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;resources:music:streaming&quot;</span>
+    <span class="p">],</span>
+    <span class="s2">&quot;username&quot;</span> <span class="o">:</span> <span class="s2">&quot;SilkroadUser&quot;</span>
+<span class="p">}</span></code></pre></div>
+
+<p>En dicho ejemplo observamos que:</p>
+
+<ul>
+  <li>Se ha definido un dominio con nombre de producto orpheus que permite realizar una serie de acciones correspondientes a la lista de Scopes:
+    <ul>
+      <li><code>resources:music:read_catalog</code></li>
+      <li><code>resources:music:edit_playlist</code></li>
+      <li><code>resources:music:streaming</code></li>
+      <li><code>iam:user:create</code></li>
+      <li><code>iam:user:delete</code></li>
+      <li><code>iam:user:read</code></li>
+    </ul>
+  </li>
+  <li>Cabe destacar que estos Scopes son nombres únicos que designan a un Scope, y a pesar de tener un nombre relevante, no aportan nada a la semántica de la regla.</li>
+  <li>Se ha definido un cliente para el dominio <code>orpheus</code>  denominado <code>orpheus-web</code> , que podrá hacer todas las operaciones definidas en su dominio, salvo <code>iam:user:delete</code>, lo que significa que <code>orpheus-web</code>  no podrá llevar a cabo la acción definida por las reglas <code>iam:user:delete</code>.</li>
+  <li>Se ha definido un usuario para el dominio <code>orpheus</code> denominado <code>SilkroadUser</code> que podrá hacer todas las operaciones definidas en su dominio, salvo <code>iam:user:delete</code>, lo que significa que <code>orpheus-web</code> no podrá llevar a cabo la acción definida por las reglas <code>iam:user:delete</code> y <code>iam:user:read</code>.</li>
+</ul>
+
+<h3 id="scopes-compuestos">Scopes compuestos</h3>
+
+<p>Es posible definir scopes que engloben a varios scopes. Una definición válida de scope compuesto podría ser:</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="p">{</span>
+   <span class="nx">_id</span><span class="o">:</span> <span class="s2">&quot;bitbloq:web&quot;</span><span class="p">,</span>
+   <span class="nx">type</span><span class="o">:</span> <span class="s2">&quot;composite_scope&quot;</span><span class="p">,</span>
+   <span class="nx">rules</span><span class="o">:</span> <span class="p">[],</span>
+   <span class="nx">scopes</span><span class="o">:</span> <span class="p">[</span>
+       <span class="s2">&quot;resources:bitbloq:avatar:edit&quot;</span><span class="p">,</span>
+       <span class="s2">&quot;evci:comp:base&quot;</span><span class="p">,</span>
+       <span class="s2">&quot;resources:bitbloq:program&quot;</span><span class="p">,</span>
+       <span class="s2">&quot;resources:bitbloq:boards&quot;</span><span class="p">,</span>
+       <span class="s2">&quot;iam:comp:base&quot;</span><span class="p">,</span>
+       <span class="s2">&quot;resources:bitbloq:avatar:view&quot;</span><span class="p">,</span>
+       <span class="s2">&quot;resources:bitbloq:project&quot;</span><span class="p">,</span>
+       <span class="s2">&quot;resources:bitbloq:release&quot;</span>
+   <span class="p">]</span>
+<span class="p">}</span></code></pre></div>
+
+<h3 id="scopes-con-parmetros-configurables">Scopes con parámetros configurables</h3>
+
+<p>Los scopes soportan parámetros definidos con una expresión regular. Puede verse un ejemplo a continuación:</p>
+
+<p>Supongamos que queremos prestar un libro desde el módulo de préstamos. Esto se haría mediante un asset que permitiría acceder temporalmente a ese libro concreto. Sin los scopes configurables, habría que crear un scope por cada uno de los libros para poder asignarlo en los préstamos; en cambio, con los scopes configurables, sólo tenemos que tener uno para todos los libros. El nuevo scope tendría una forma similar al siguiente:</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="p">{</span>
+    <span class="nx">_id</span><span class="o">:</span> <span class="s2">&quot;borrow:book&quot;</span><span class="p">,</span>
+    <span class="nx">audience</span><span class="o">:</span> <span class="s2">&quot;http://resources.bqws.io&quot;</span><span class="p">,</span>
+    <span class="nx">rules</span><span class="o">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nx">mediaTypes</span><span class="o">:</span> <span class="p">[</span>
+                <span class="s2">&quot;application/json&quot;</span>
+            <span class="p">],</span>
+            <span class="nx">methods</span><span class="o">:</span> <span class="p">[</span>
+                <span class="s2">&quot;GET&quot;</span>
+            <span class="p">],</span>
+            <span class="nx">type</span><span class="o">:</span> <span class="s2">&quot;http_access&quot;</span><span class="p">,</span>
+            <span class="nx">uri</span><span class="o">:</span> <span class="s2">&quot;v.*/resource/books:Book/&quot;</span>
+        <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="nx">scopes</span><span class="o">:</span> <span class="p">[],</span>
+    <span class="nx">parameters</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">resourceId</span><span class="o">:</span> <span class="s2">&quot;[A-Za-z]+&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></div>
+
+<h3 id="scopes-bsicos-por-servicios">Scopes básicos por servicios:</h3>
+
+<p>Cada uno de los módulos ofrecidos por corbel tiene una funcionalidad susceptible de ser controlada por diferentes Scopes. A continuación se muestran los Scopes que podríamos denominar como genéricos para todos los proyectos:</p>
+
+<p><strong>Módulo IAM</strong></p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="p">{</span>  
+    <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;iam:user:delete&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;audience&quot;</span> <span class="o">:</span> <span class="s2">&quot;http://iam.bqws.io&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;rules&quot;</span> <span class="o">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;mediaTypes&quot;</span> <span class="o">:</span> <span class="p">[</span>
+                <span class="s2">&quot;application/json&quot;</span>
+            <span class="p">],</span>
+            <span class="s2">&quot;methods&quot;</span> <span class="o">:</span> <span class="p">[</span>
+                <span class="s2">&quot;DELETE&quot;</span>
+            <span class="p">],</span>
+            <span class="s2">&quot;type&quot;</span> <span class="o">:</span> <span class="s2">&quot;http_access&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;uri&quot;</span> <span class="o">:</span> <span class="s2">&quot;v.*/user/.*&quot;</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">},</span>
+<span class="p">{</span>
+    <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;iam:user:create&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;audience&quot;</span> <span class="o">:</span> <span class="s2">&quot;http://iam.bqws.io&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;rules&quot;</span> <span class="o">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;mediaTypes&quot;</span> <span class="o">:</span> <span class="p">[</span>
+                <span class="s2">&quot;application/json&quot;</span>
+            <span class="p">],</span>
+            <span class="s2">&quot;methods&quot;</span> <span class="o">:</span> <span class="p">[</span>
+                <span class="s2">&quot;POST&quot;</span>
+            <span class="p">],</span>
+            <span class="s2">&quot;type&quot;</span> <span class="o">:</span> <span class="s2">&quot;http_access&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;uri&quot;</span> <span class="o">:</span> <span class="s2">&quot;v.*/user/.*/identity/?&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;mediaTypes&quot;</span> <span class="o">:</span> <span class="p">[</span>
+                <span class="s2">&quot;application/json&quot;</span>
+            <span class="p">],</span>
+            <span class="s2">&quot;methods&quot;</span> <span class="o">:</span> <span class="p">[</span>
+                <span class="s2">&quot;POST&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;PUT&quot;</span>
+            <span class="p">],</span>
+            <span class="s2">&quot;type&quot;</span> <span class="o">:</span> <span class="s2">&quot;http_access&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;uri&quot;</span> <span class="o">:</span> <span class="s2">&quot;v.*/user(/.+)?&quot;</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">},</span>
+<span class="p">{</span>
+    <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;iam:user:update&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;audience&quot;</span> <span class="o">:</span> <span class="s2">&quot;http://iam.bqws.io&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;rules&quot;</span> <span class="o">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;mediaTypes&quot;</span> <span class="o">:</span> <span class="p">[</span>
+                <span class="s2">&quot;application/json&quot;</span>
+            <span class="p">],</span>
+            <span class="s2">&quot;methods&quot;</span> <span class="o">:</span> <span class="p">[</span>
+                <span class="s2">&quot;PUT&quot;</span>
+            <span class="p">],</span>
+            <span class="s2">&quot;type&quot;</span> <span class="o">:</span> <span class="s2">&quot;http_access&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;uri&quot;</span> <span class="o">:</span> <span class="s2">&quot;v.*/user/.*&quot;</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">},</span>
+<span class="p">{</span>
+    <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;iam:user:me&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;audience&quot;</span> <span class="o">:</span> <span class="s2">&quot;http://iam.bqws.io&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;rules&quot;</span> <span class="o">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;mediaTypes&quot;</span> <span class="o">:</span> <span class="p">[</span>
+                <span class="s2">&quot;application/json&quot;</span>
+            <span class="p">],</span>
+            <span class="s2">&quot;methods&quot;</span> <span class="o">:</span> <span class="p">[</span>
+                <span class="s2">&quot;GET&quot;</span>
+            <span class="p">],</span>
+            <span class="s2">&quot;type&quot;</span> <span class="o">:</span> <span class="s2">&quot;http_access&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;uri&quot;</span> <span class="o">:</span> <span class="s2">&quot;v.*/user/me&quot;</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">},</span>
+<span class="p">{</span>
+    <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;iam:user:read&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;audience&quot;</span> <span class="o">:</span> <span class="s2">&quot;http://iam.bqws.io&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;rules&quot;</span> <span class="o">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;mediaTypes&quot;</span> <span class="o">:</span> <span class="p">[</span>
+                <span class="s2">&quot;application/json&quot;</span>
+            <span class="p">],</span>
+            <span class="s2">&quot;methods&quot;</span> <span class="o">:</span> <span class="p">[</span>
+                <span class="s2">&quot;GET&quot;</span>
+            <span class="p">],</span>
+            <span class="s2">&quot;type&quot;</span> <span class="o">:</span> <span class="s2">&quot;http_access&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;uri&quot;</span> <span class="o">:</span> <span class="s2">&quot;v1.*/user/?(?!me$).*&quot;</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">},</span>
+<span class="p">{</span>
+    <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;iam:token:upgrade&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;audience&quot;</span> <span class="o">:</span> <span class="s2">&quot;http://iam.bqws.io&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;rules&quot;</span> <span class="o">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;mediaTypes&quot;</span> <span class="o">:</span> <span class="p">[</span>
+                <span class="s2">&quot;application/json&quot;</span>
+            <span class="p">],</span>
+            <span class="s2">&quot;methods&quot;</span> <span class="o">:</span> <span class="p">[</span>
+                <span class="s2">&quot;GET&quot;</span>
+            <span class="p">],</span>
+            <span class="s2">&quot;type&quot;</span> <span class="o">:</span> <span class="s2">&quot;http_access&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;uri&quot;</span> <span class="o">:</span> <span class="s2">&quot;v.*/oauth/token/upgrade/?&quot;</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span></code></pre></div>
+
+<p><strong>Módulo EC</strong></p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="p">{</span>
+    <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;ec:product&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;audience&quot;</span> <span class="o">:</span> <span class="s2">&quot;http://ec.bqws.io&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;rules&quot;</span> <span class="o">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;mediaTypes&quot;</span> <span class="o">:</span> <span class="p">[</span>
+                <span class="s2">&quot;application/json&quot;</span>
+            <span class="p">],</span>
+            <span class="s2">&quot;methods&quot;</span> <span class="o">:</span> <span class="p">[</span>
+                <span class="s2">&quot;GET&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;POST&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;PUT&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;DELETE&quot;</span>
+            <span class="p">],</span>
+            <span class="s2">&quot;type&quot;</span> <span class="o">:</span> <span class="s2">&quot;http_access&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;uri&quot;</span> <span class="o">:</span> <span class="s2">&quot;v.*/product/?.*&quot;</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">},</span>
+<span class="p">{</span>
+    <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;ec:order&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;audience&quot;</span> <span class="o">:</span> <span class="s2">&quot;http://ec.bqws.io&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;rules&quot;</span> <span class="o">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;type&quot;</span> <span class="o">:</span> <span class="s2">&quot;http_access&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;mediaTypes&quot;</span> <span class="o">:</span> <span class="p">[</span>
+                <span class="s2">&quot;application/json&quot;</span>
+            <span class="p">],</span>
+            <span class="s2">&quot;methods&quot;</span> <span class="o">:</span> <span class="p">[</span>
+                <span class="s2">&quot;GET&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;POST&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;PUT&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;DELETE&quot;</span>
+            <span class="p">],</span>
+            <span class="s2">&quot;uri&quot;</span> <span class="o">:</span> <span class="s2">&quot;v.*/order/&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;tokenType&quot;</span> <span class="o">:</span> <span class="s2">&quot;user&quot;</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">},</span>
+<span class="p">{</span>
+    <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;ec:purchase:user&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;audience&quot;</span> <span class="o">:</span> <span class="s2">&quot;http://ec.bqws.io&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;rules&quot;</span> <span class="o">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;mediaTypes&quot;</span> <span class="o">:</span> <span class="p">[</span>
+                <span class="s2">&quot;application/json&quot;</span>
+            <span class="p">],</span>
+            <span class="s2">&quot;methods&quot;</span> <span class="o">:</span> <span class="p">[</span>
+                <span class="s2">&quot;GET&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;PUT&quot;</span>
+            <span class="p">],</span>
+            <span class="s2">&quot;type&quot;</span> <span class="o">:</span> <span class="s2">&quot;http_access&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;uri&quot;</span> <span class="o">:</span> <span class="s2">&quot;v.*/purchase(:?/-.*)?/?$&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;tokenType&quot;</span> <span class="o">:</span> <span class="s2">&quot;user&quot;</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">},</span>
+<span class="p">{</span>
+    <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;ec:purchase:admin&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;audience&quot;</span> <span class="o">:</span> <span class="s2">&quot;http://ec.bqws.io&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;rules&quot;</span> <span class="o">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;mediaTypes&quot;</span> <span class="o">:</span> <span class="p">[</span>
+                <span class="s2">&quot;application/json&quot;</span>
+            <span class="p">],</span>
+            <span class="s2">&quot;methods&quot;</span> <span class="o">:</span> <span class="p">[</span>
+                <span class="s2">&quot;GET&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;PUT&quot;</span>
+            <span class="p">],</span>
+            <span class="s2">&quot;type&quot;</span> <span class="o">:</span> <span class="s2">&quot;http_access&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;uri&quot;</span> <span class="o">:</span> <span class="s2">&quot;v.*/purchase/.*&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;tokenType&quot;</span> <span class="o">:</span> <span class="s2">&quot;user&quot;</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">},</span>
+<span class="p">{</span>
+    <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;ec:paymentmethod:user&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;audience&quot;</span> <span class="o">:</span> <span class="s2">&quot;http://ec.bqws.io&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;rules&quot;</span> <span class="o">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;mediaTypes&quot;</span> <span class="o">:</span> <span class="p">[</span>
+                <span class="s2">&quot;application/json&quot;</span>
+            <span class="p">],</span>
+            <span class="s2">&quot;methods&quot;</span> <span class="o">:</span> <span class="p">[</span>
+                <span class="s2">&quot;GET&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;POST&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;DELETE&quot;</span>
+            <span class="p">],</span>
+            <span class="s2">&quot;type&quot;</span> <span class="o">:</span> <span class="s2">&quot;http_access&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;uri&quot;</span> <span class="o">:</span> <span class="s2">&quot;v.*/paymentmethod(:?/-.*)?/?$&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;tokenType&quot;</span> <span class="o">:</span> <span class="s2">&quot;user&quot;</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">},</span>
+<span class="p">{</span>
+    <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;ec:paymentmethod:admin&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;audience&quot;</span> <span class="o">:</span> <span class="s2">&quot;http://ec.bqws.io&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;rules&quot;</span> <span class="o">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;mediaTypes&quot;</span> <span class="o">:</span> <span class="p">[</span>
+                <span class="s2">&quot;application/json&quot;</span>
+            <span class="p">],</span>
+            <span class="s2">&quot;methods&quot;</span> <span class="o">:</span> <span class="p">[</span>
+                <span class="s2">&quot;GET&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;POST&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;DELETE&quot;</span>
+            <span class="p">],</span>
+            <span class="s2">&quot;type&quot;</span> <span class="o">:</span> <span class="s2">&quot;http_access&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;uri&quot;</span> <span class="o">:</span> <span class="s2">&quot;v.*/paymentmethod/.*&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;tokenType&quot;</span> <span class="o">:</span> <span class="s2">&quot;user&quot;</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">},</span>
+<span class="p">{</span>
+    <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;ec:payment:user&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;audience&quot;</span> <span class="o">:</span> <span class="s2">&quot;http://ec.bqws.io&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;rules&quot;</span> <span class="o">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;mediaTypes&quot;</span> <span class="o">:</span> <span class="p">[</span>
+                <span class="s2">&quot;application/json&quot;</span>
+            <span class="p">],</span>
+            <span class="s2">&quot;methods&quot;</span> <span class="o">:</span> <span class="p">[</span>
+                <span class="s2">&quot;GET&quot;</span>
+            <span class="p">],</span>
+            <span class="s2">&quot;type&quot;</span> <span class="o">:</span> <span class="s2">&quot;http_access&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;uri&quot;</span> <span class="o">:</span> <span class="s2">&quot;v.*/payment(:?/-.*)?/?$&quot;</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">},</span>
+<span class="p">{</span>
+    <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;ec:payment:admin&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;audience&quot;</span> <span class="o">:</span> <span class="s2">&quot;http://ec.bqws.io&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;rules&quot;</span> <span class="o">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;mediaTypes&quot;</span> <span class="o">:</span> <span class="p">[</span>
+                <span class="s2">&quot;application/json&quot;</span>
+            <span class="p">],</span>
+            <span class="s2">&quot;methods&quot;</span> <span class="o">:</span> <span class="p">[</span>
+                <span class="s2">&quot;GET&quot;</span>
+            <span class="p">],</span>
+            <span class="s2">&quot;type&quot;</span> <span class="o">:</span> <span class="s2">&quot;http_access&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;uri&quot;</span> <span class="o">:</span> <span class="s2">&quot;v.*/payment/.*&quot;</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span></code></pre></div>
+
+<p><strong>Módulo EVCI</strong></p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="p">{</span>
+    <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;evci:event:publish&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;audience&quot;</span> <span class="o">:</span> <span class="s2">&quot;http://evci.bqws.io&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;rules&quot;</span> <span class="o">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;mediaTypes&quot;</span> <span class="o">:</span> <span class="p">[</span>
+                <span class="s2">&quot;application/json&quot;</span>
+            <span class="p">],</span>
+            <span class="s2">&quot;methods&quot;</span> <span class="o">:</span> <span class="p">[</span>
+                <span class="s2">&quot;POST&quot;</span>
+            <span class="p">],</span>
+            <span class="s2">&quot;type&quot;</span> <span class="o">:</span> <span class="s2">&quot;http_access&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;uri&quot;</span> <span class="o">:</span> <span class="s2">&quot;v.*/event/.*&quot;</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span></code></pre></div>
+
+<hr />
+
+<h2 id="autenticacin">Autenticación</h2>
+
+<p>Para hacer uso de cualquier servicio de corbel, es necesario obtener un <code>accessToken</code>, para ello, la aplicación debe autenticarse usando el servicio IAM.</p>
+
+<p>Pero para obtener un <code>accessToken</code> de IAM es necesario crear un JWT (JSON Web Token)</p>
+
+<h3 id="crear-un-jwt">Crear un JWT</h3>
+
+<p><strong>JWT</strong> es un estándar que nos permite, de una forma segura, expresar la identidad y las necesidades que tiene el cliente que solicita la autorización de acceso. <strong>NO</strong> recomendamos construir el JWT a mano porque, aunque es muy sencillo, es posible cometer errores en la codificación y firmado que nos lleven a la frustración. Recomendamos el uso de alguna librería que nos permita hacer esto con un par de lineas de código:</p>
+
+<ul>
+  <li><a href="https://code.google.com/p/jsontoken/">Ejemplo Java</a></li>
+  <li><a href="https://github.com/firebase/php-jwt">Ejemplo PHP</a></li>
+</ul>
+
+<p>Para construir un JWT, necesitamos dos JSON:</p>
+
+<ul>
+  <li>El primero es el <code>header</code> del JWT, que en nuestro caso puede ser:</li>
+</ul>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="p">{</span>
+   <span class="s2">&quot;typ&quot;</span><span class="o">:</span><span class="s2">&quot;JWT&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;alg&quot;</span><span class="o">:</span><span class="s2">&quot;HS256&quot;</span>
+<span class="p">}</span></code></pre></div>
+
+<ul>
+  <li>El siguiente JSON es el <code>payload</code> o <code>claims</code> del JWT que para nuestro caso sería:</li>
+</ul>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="p">{</span>
+  <span class="s2">&quot;iss&quot;</span><span class="o">:</span> <span class="s2">&quot;fb2a979d&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;aud&quot;</span><span class="o">:</span> <span class="s2">&quot;http://iam.bqws.io&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;scope&quot;</span><span class="o">:</span> <span class="s2">&quot;evci:event:publish resources:sap:message&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;exp&quot;</span><span class="o">:</span> <span class="nx">TIMESTAMP_NOW_PLUS_EXPIRES</span>
+<span class="p">}</span></code></pre></div>
+
+<ul>
+  <li><code>iss</code>: Issuer: El identificador del cliente o clientId</li>
+  <li><code>aud</code>: Audience, A quién va dirigido este JWT, en este caso para <code>http://iam.bqws.io</code></li>
+  <li><code>scope</code>: Scopes que el cliente solicita tener acceso</li>
+  <li>
+    <p><code>exp</code>: Tiempo de valided para el <code>accessToken</code> solicitado representado en <code>epoch_time</code> actual en segundos más el tiempo de validez (máximo 1h).</p>
+  </li>
+  <li>El JWT finalmente se firma con el algoritmo <code>HMAC SHA256</code> (o <code>RS256</code>) con <code>secret</code> como clave para generar el <code>assertion</code>:</li>
+</ul>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">base64Encode</span><span class="p">(</span><span class="nx">header</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span> <span class="o">+</span> <span class="nx">base64Encode</span><span class="p">(</span><span class="nx">payload</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span> <span class="o">+</span> <span class="nx">sign</span><span class="p">(</span><span class="nx">base64Encode</span><span class="p">(</span><span class="nx">header</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span> <span class="o">+</span> <span class="nx">base64Encode</span><span class="p">(</span><span class="nx">payload</span><span class="p">),</span> <span class="nx">clientSecret</span><span class="p">)</span></code></pre></div>
+
+<ul>
+  <li>Este <code>assertion</code> es el que se envía como cuerpo al solicitar un <code>accessToken</code> junto al <code>grant_type</code>. El <code>grant_type</code> siempre toma el valor de <code>urn:ietf:params:oauth:grant-type:jwt-bearer</code>.</li>
+</ul>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">POST</span> <span class="nx">https</span><span class="o">:</span><span class="c1">//iam.bqws.io/v1.0/oauth/token</span>
+<span class="nx">Accept</span><span class="o">:</span><span class="nx">application</span><span class="o">/</span><span class="nx">json</span>
+<span class="nx">Content</span><span class="o">-</span><span class="nx">Type</span><span class="o">:</span><span class="nx">application</span><span class="o">/</span><span class="nx">x</span><span class="o">-</span><span class="nx">www</span><span class="o">-</span><span class="nx">form</span><span class="o">-</span><span class="nx">urlencoded</span><span class="p">;</span> <span class="nx">charset</span><span class="o">=</span><span class="nx">UTF</span><span class="o">-</span><span class="mi">8</span>
+
+<span class="nx">Form</span> <span class="nx">Data</span> <span class="p">(</span><span class="nx">parsed</span> <span class="nx">and</span> <span class="nx">decoded</span> <span class="nx">data</span><span class="p">)</span>
+<span class="nx">assertion</span><span class="o">:</span><span class="nx">_JWT_ASSERTION_</span>
+<span class="nx">grant_type</span><span class="o">:</span><span class="nx">urn</span><span class="o">:</span><span class="nx">ietf</span><span class="o">:</span><span class="nx">params</span><span class="o">:</span><span class="nx">oauth</span><span class="o">:</span><span class="nx">grant</span><span class="o">-</span><span class="nx">type</span><span class="o">:</span><span class="nx">jwt</span><span class="o">-</span><span class="nx">bearer</span></code></pre></div>
+
+<blockquote>
+  <p><strong>Más info</strong></p>
+
+  <ul>
+    <li><a href="http://self-issued.info/docs/draft-ietf-oauth-json-web-token.html">IETF</a></li>
+    <li><a href="http://jwt.io/">JWT playground</a></li>
+  </ul>
+</blockquote>
+
+<h3 id="obtener-un-accesstoken">Obtener un accessToken</h3>
+
+<p>A continuación se describen los diferentes métodos para obtener un <code>accessToken</code>, ya sea a través de autenticación básica con IAM, o a través del protocolo OAuth (facebook, google o corbel-oauth).</p>
+
+<h4 id="token-object">Token Object</h4>
+
+<p><code>tokenObject</code> es la estructura de datos que representa un <code>accessToken</code>, este está compuesto por:</p>
+
+<ul>
+  <li><code>accessToken</code>: El token propiamente dicho que da acceso a otros recursos.</li>
+  <li><code>expiresAt</code>: El tiempo hasta el cual el token es válido.</li>
+  <li><code>refreshToken</code>: El token a usar para obtener un <code>tokenObject</code> sin tener que generar un JWT completo.</li>
+</ul>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="p">{</span>
+    <span class="s2">&quot;accessToken&quot;</span><span class="o">:</span><span class="s2">&quot;valid-token&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;expiresAt&quot;</span><span class="o">:</span> <span class="mi">1385377605000</span><span class="p">,</span>
+    <span class="s2">&quot;refreshToken&quot;</span><span class="o">:</span> <span class="s2">&quot;refresh-token&quot;</span>
+<span class="p">}</span></code></pre></div>
+
+<h4 id="bsica-iam-basic">Básica (IAM Basic)</h4>
+
+<p>Para autenticarse en IAM directamente</p>
+
+<p>Dado el siguiente <code>_JWT_ASSERTION_</code> generado con el siguiente código JavaScript:</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">claims</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">iss</span><span class="o">:</span> <span class="s1">&#39;clientId&#39;</span><span class="p">,</span>                    <span class="c1">// App identifier</span>
+    <span class="nx">secret</span><span class="o">:</span> <span class="s1">&#39;clientSecret&#39;</span><span class="p">,</span>             <span class="c1">// App secret</span>
+    <span class="nx">aud</span><span class="o">:</span> <span class="s1">&#39;aud&#39;</span><span class="o">:</span> <span class="s1">&#39;http://iam.bqws.io&#39;</span><span class="p">,</span>
+    <span class="nx">scope</span><span class="o">:</span> <span class="s1">&#39;scope:operation1 scope:operation2&#39;</span><span class="p">,</span>
+    <span class="nx">version</span><span class="o">:</span> <span class="s1">&#39;0.0.1&#39;</span>                    <span class="c1">// client app version</span>
+    <span class="nx">claims</span><span class="p">.</span><span class="nx">exp</span><span class="o">:</span> <span class="nx">getExpiration</span><span class="p">(),</span>         <span class="c1">// Current millis timestamp plus 1h</span>
+    <span class="s1">&#39;basic_auth.username&#39;</span><span class="o">:</span> <span class="s1">&#39;username&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;basic_auth.password&#39;</span><span class="o">:</span> <span class="s1">&#39;password&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;device_id&#39;</span><span class="o">:</span> <span class="s1">&#39;deviceId&#39;</span>             <span class="c1">// client device identifier</span>
+<span class="p">};</span>
+
+<span class="kd">var</span> <span class="nx">_JWT_ASSERTION_</span> <span class="o">=</span> <span class="nx">jwt</span><span class="p">.</span><span class="nx">generate</span><span class="p">(</span><span class="nx">claims</span><span class="p">);</span></code></pre></div>
+
+<p>Podríamos obtener un <code>accesToken</code> directamente con IAM a través de la siguiente petición:</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">curl</span> <span class="s1">&#39;https://iam.bqws.io/v1.0/oauth/token&#39;</span>
+    <span class="o">-</span><span class="nx">H</span> <span class="s1">&#39;Content-Type: application/x-www-form-urlencoded; charset=UTF-8&#39;</span>
+    <span class="o">-</span><span class="nx">H</span> <span class="s1">&#39;Accept: application/json&#39;</span>
+    <span class="o">--</span><span class="nx">data</span> <span class="s2">&quot;assertion=_JWT_ASSERTION_&amp;grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Ajwt-bearer&quot;</span></code></pre></div>
+
+<h4 id="basada-en-oauth">Basada en oauth</h4>
+
+<p>OAuth es un protocolo open source, que permite autorización segura de una API de modo estándar y simple para aplicaciones de escritorio, móviles y web.
+OAuth permite a un usuario del sitio A compartir su información en el sitio A (proveedor de servicio) con el sitio B (llamado consumidor) sin compartir toda su identidad.</p>
+
+<p><img src="../img/oauth-basic.png" alt="oauth basic diagram" /></p>
+
+<p><img src="../img/oauth-flow.jpg" alt="oauth flow diagram" /></p>
+
+<ol>
+  <li>Crear credenciales de aplicación en el servicio externo
+    <ul>
+      <li>Crear aplicación en Facebook [Pendiente]</li>
+      <li>Crear aplicación en Google [Pendiente]</li>
+      <li>Crear aplicación en corbel-js [Pendiente]</li>
+    </ul>
+  </li>
+  <li>Redirigir al servicio de oauth externo (Facebook, Google, corbel-oauth)
+    <ul>
+      <li>Para el caso de google, abrimos una nueva ventana en la siguiente URL:
+ <code>https://accounts.google.com/o/oauth2/auth?queryString</code></li>
+      <li>En <code>queryString</code> deben aparecer los siguientes parámetros:</li>
+      <li><code>clientId</code>: Id del cliente,</li>
+      <li><code>scopes</code>: String separado por espacios con los scopes del servicio externo que se solicita (no los de corbel)</li>
+      <li><code>response_type</code>: El tipo de clave del servicio externo que se solicita, en nuestro caso <code>code</code>, a intercambiar por un <code>accessToken</code></li>
+      <li><code>redirect_uri</code>: URL a la que redirigir cuando el proceso de autenticación en el servicio externo se complete, ha de ser exactamente la misma que la URL permitida a la hora de crear la aplicación en el servicio externo.</li>
+    </ul>
+  </li>
+  <li>Al completarse la autenticación al servicio externo, éste devuelve el <code>code</code> del servicio externo para intercambiarlo por un <code>accessToken</code> de IAM. Esto se puede lograr de varias formas:</li>
+</ol>
+
+<ul>
+  <li>Redirect automático a IAM:
+Se puede establecer el anterior campo <code>redirect_uri</code> para que apunte directamente a IAM para intercambiar automáticamente el <code>code</code> por un <code>accessToken</code>, por ejemplo:
+<code>
+https://iam.bqws.io/v1.0/oauth/token
+</code>
+    <ul>
+      <li>Pros: sencillo y automático</li>
+      <li>Contras: al final del flujo termina en una url que devuelve JSON que hay que procesar de alguna forma.</li>
+    </ul>
+  </li>
+  <li>Redirect a la aplicación cliente:
+También es posible apuntar a una URL de cliente para que éste procese el <code>code</code> devuelto y lo envíe a IAM.
+    <ul>
+      <li>Pros: mayor control sobre el flujo y la respuesta.</li>
+      <li>Contras: intercambiar el <code>code</code> por el <code>token</code> manualmente. Dar soporte a la URL del cliente (web, interceptores, …)</li>
+    </ul>
+  </li>
+</ul>
+
+<blockquote>
+  <p><strong>Más info</strong>
+* <a href="http://tutorials.jenkov.com/oauth2/authorization.html">OAuth 2.0 Tutorial</a>
+* <a href="https://developers.google.com/accounts/docs/OAuth2">Google oauth</a>
+* <a href="https://developers.google.com/accounts/docs/OAuth2InstalledApp">Google oauth for installed apps</a>
+* <a href="https://developers.google.com/accounts/docs/OAuth2UserAgent">Google oauth for client-side apps</a>
+* <a href="https://developers.facebook.com/docs/facebook-login/v2.2">Facebook login flow</a></p>
+</blockquote>
+
+<hr />
+
+<h2 id="assets">Assets</h2>
+
+<p>Un Asset define un conjunto de scopes que un usuario puede tener durante un periodo de tiempo.
+Con este mecanismo, podemos definir scopes dinámicos de recursos a usuarios.
+Un ejemplo de Asset sería el siguiente:</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="p">{</span>
+   <span class="nx">_id</span><span class="o">:</span> <span class="s2">&quot;0b2dff5c39934c210d80056a94eb27bc6c6d6378&quot;</span><span class="p">,</span>
+   <span class="nx">userId</span><span class="o">:</span> <span class="s2">&quot;fooid&quot;</span><span class="p">,</span>
+   <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;assettest13&quot;</span><span class="p">,</span>
+   <span class="nx">productId</span><span class="o">:</span> <span class="s2">&quot;producttest13&quot;</span><span class="p">,</span>
+   <span class="nx">expire</span><span class="o">:</span> <span class="nx">ISODate</span><span class="p">(</span><span class="s2">&quot;2025-01-01T00:01:00Z&quot;</span><span class="p">),</span>
+   <span class="nx">active</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+   <span class="nx">scopes</span><span class="o">:</span> <span class="p">[</span>
+       <span class="s2">&quot;ec:purchase:user&quot;</span>
+   <span class="p">]</span>
+<span class="p">}</span></code></pre></div>
+
+<h3 id="incrementar-scopes-con-assets">Incrementar scopes con assets</h3>
+
+<p>Una vez autenticado, para poder obtener accesos a los scopes que nos dan acceso a los assets, tenemos que realizar una petición a:</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">GET</span> <span class="nx">https</span><span class="o">:</span><span class="c1">//assets.bqws.io/v1.0/asset/access</span>
+<span class="nx">Accept</span><span class="o">:</span><span class="nx">application</span><span class="o">/</span><span class="nx">json</span>
+<span class="nx">Authorization</span><span class="o">:</span> <span class="nx">Bearer</span> <span class="nx">accessToken</span></code></pre></div>
+
+<p>Esta petición redirigirá automáticamente a IAM para obtener un accessToken con accesos incrementados (en función de los assets).</p>
+
+<hr />
+
+<h2 id="referencia">Referencia</h2>
+
+<h3 id="apiaryhttpdocssilkroadiamapiaryio"><a href="http://docs.silkroadiam.apiary.io/">Apiary</a></h3>
+
+<h3 id="bloghttpsconfluencebqcomdisplaysilkroadsilkroadhome"><a href="https://confluence.bq.com/display/SILKROAD/SilkRoad+Home">Blog</a></h3>
+
+<h3 id="issueshttpsjirabqcomsecurerapidboardjsparapidview147viewdetail"><a href="https://jira.bq.com/secure/RapidBoard.jspa?rapidView=147&amp;view=detail">Issues</a></h3>
+
+<h3 id="endpoints-del-entorno-de-desarrollo">Endpoints del entorno de desarrollo</h3>
+
+<ul>
+  <li>IAM: https://iam-qa.bqws.io</li>
+  <li>EVCI: https://evci-qa.bqws.io</li>
+  <li>RESMI: https://resources-qa.bqws.io</li>
+</ul>
+
+  </article>
+
+</div>
+
+      </div>
+    </div>
+
+    <footer class="footer">
+
+    <div class="wrapper">
+
+        <div class="footer__col col-c-4">
+
+            <ul class="footer__list">
+                <li>Corbel</li>
+                <li><a class="footer__link" href="mailto:corbel-dev@bq.com">corbel-dev@bq.com</a></li>
+            </ul>
+        </div>
+
+        <div class="footer__col col-c-4">
+
+            <ul class="footer__list">
+
+                
+                <li>
+                    <a class="footer__link" href="https://github.com/corbel_platform">
+              <span class="icon  icon--github">
+                <svg viewBox="0 0 16 16">
+                    <path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/>
+                </svg>
+              </span>
+
+                        <span class="username">corbel_platform</span>
+                    </a>
+                </li>
+                
+
+                
+                <li>
+                    <a class="footer__link" href="https://twitter.com/corbel_platform">
+              <span class="icon  icon--twitter">
+                <svg viewBox="0 0 16 16">
+                    <path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809
+                  c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/>
+                </svg>
+              </span>
+
+                        <span class="username">corbel_platform</span>
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+
+        <div class="footer__col footer__desc col-c-4">
+            <ul class="logo__list">
+                <li class="logo__list__item">Webpage powered by <a href="https://github.com/bq/penguin" title="penguin" target="_blank"><span class="title__logo"><img src="/assets/svg/penguin.svg" alt=""/></span></a></li>
+            </ul>
+        </div>
+
+    </div>
+
+    <p class="footer__copy-left">Made with <span class="invisible">love</span>
+        <span class="icon icon-heart">
+          <svg viewBox="0 0 24 24">
+              <path fill="#cc0000" d="M16.4,4C14.6,4,13,4.9,12,6.3C11,4.9,9.4,4,7.6,4C4.5,4,2,6.5,2,9.6C2,14,12,22,12,22s10-8,10-12.4C22,6.5,19.5,4,16.4,4z"/>
+          </svg>
+        </span>
+        by <a href="http://www.bq.com"><strong>bq</strong></a>
+    </p>
+
+</footer>
+
+
+<!-- jQuery -->
+<script src="/bower_components/jquery/dist/jquery.min.js"></script>
+
+<!-- kiUI.js -->
+<script src="/bower_components/penguin/lib/js/penguin.min.js"></script>
+
+<!-- Components demo -->
+<script src="/assets/js/demo.js"></script>
+
+
+  </body>
+
+</html>
