@@ -134,5 +134,6 @@ PLATFORMS
 DEPENDENCIES
   breakpoint
   github-pages (= 37)
+  jekyll
   json
   susy
