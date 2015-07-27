@@ -132,7 +132,7 @@
 
 .jumbotron {
   margin-bottom: 1.5em;
-  padding: 120px 0 80px 0;
+  padding: 60px 0 80px 0;
   background: $brand-color;
 
   @media screen and (max-width: 741px) {
@@ -142,11 +142,13 @@
 
 .jumbotron__content {
   color: #fff;
+  position: relative;
+
   @include span(12 of 12);
 
   .jumbotron__title {
     font-size: 3em;
-    font-weight: bold;
+    text-align: center;
   }
   p {
     margin-bottom: 5px;
@@ -157,6 +159,7 @@
   }
   .jumbotron__description {
     margin-bottom: 2em;
+    text-align:center;
   }
 
   a {
@@ -280,7 +283,7 @@
 \*------------------------------------*/
 
 .page-content {
-  padding: $spacing-unit 0;
+  padding: 145px 0;
 }
 
 .page-heading {

@@ -4,7 +4,6 @@
 @charset "utf-8";
 
 
-
 // Our variables
 $base-font-family      : Helvetica, Arial, sans-serif;
 $base-font-size        : 16px;
@@ -42,3 +41,15 @@ $susy: (
         "syntax-highlighting"
 ;
 */
+
+.logo{
+    border-radius: 300px;
+    background-color: rgb(255, 255, 255);
+    position: absolute;
+    bottom: -300px;
+    left: 50%;
+    transform: translate(-50%, 0%);
+}
+
+
+@import "fonts.scss";
