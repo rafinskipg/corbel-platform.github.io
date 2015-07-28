@@ -143,6 +143,7 @@
 .jumbotron__content {
   color: #fff;
   position: relative;
+  margin-bottom: 170px;
 
   @include span(12 of 12);
 
@@ -283,7 +284,10 @@
 \*------------------------------------*/
 
 .page-content {
-  padding: 145px 0;
+  padding: 30px 0;
+  &.home{
+    padding: 215px 0;
+  }
 }
 
 .page-heading {

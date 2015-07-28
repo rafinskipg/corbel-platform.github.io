@@ -1,6 +1,5 @@
 ---
 ---
-/*
 @charset "utf-8";
 
 
@@ -40,13 +39,13 @@ $susy: (
         "layout",
         "syntax-highlighting"
 ;
-*/
+
 
 .logo{
     border-radius: 300px;
     background-color: rgb(255, 255, 255);
     position: absolute;
-    bottom: -300px;
+    bottom: -225px;
     left: 50%;
     transform: translate(-50%, 0%);
 }
